@@ -204,14 +204,15 @@ tableSortModule.directive("tsRepeat", ['$compile', function($compile) {
     };
 }]);
 
-tableSortModule.filter( 'tablesortOrderBy', function(){
-    return function(array, sortfun ) {
-        if(!array) return;
-        var arrayCopy = [];
-        for ( var i = 0; i < array.length; i++) { arrayCopy.push(array[i]); }
-        return arrayCopy.sort( sortfun );
+tableSortModule.filter('tablesortOrderBy', function () {
+    return function (list, sortfun) {
+        if (!_.size(list)) return;
+        var listCopy = _.map(list, function (it) {
+            return it;
+        });
+        return listCopy.sort(sortfun);
     };
-} );
+});
 
 tableSortModule.filter( 'parseInt', function(){
     return function(input) {
